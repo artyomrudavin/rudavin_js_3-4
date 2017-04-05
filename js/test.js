@@ -29,41 +29,34 @@ var test = {
 		var parent = document.querySelector('form');
 		parent.appendChild(questionList);
 
-		var question1 = document.createElement('li');
-		question1.innerHTML = '<h5>Вопрос №1</h5>';
-		var question2 = document.createElement('li');
-		question2.innerHTML = '<h5>Вопрос №2</h5>';
-		var question3 = document.createElement('li');
-		question3.innerHTML = '<h5>Вопрос №3</h5>';
-
-		questionList.appendChild(question1);
-		questionList.appendChild(question2);
-		questionList.appendChild(question3);
-	},
-
-	createAnswers: function() {
-		var answer = document.createElement('div');
-		answer.style.marginTop = '20px';
-		answer.style.marginBottom = '20px';
-
 		for (var i = 1; i <= 3; i++) {
-			var label = document.createElement('label');
-			var br = document.createElement('br');
-			var input = document.createElement('input');
-			input.type = 'checkbox';
-			input.classList = 'checkbox';
-			input.style.marginRight = '10px'
-			var text = document.createTextNode('Вариант ответа №' + i);
-			label.appendChild(input);
-			label.appendChild(text);
-			answer.appendChild(label);
-			answer.appendChild(br);
-		}
+			var question = document.createElement('li');
+			var questionLabel = document.createElement('h5');
+			var questionText = document.createTextNode('Вопрос №' + i);
 
-		var questionList = document.querySelectorAll('li');
-		questionList[0].appendChild(answer);
-		questionList[1].appendChild( answer.cloneNode(true) );
-		questionList[2].appendChild( answer.cloneNode(true) );
+			var answer = document.createElement('div');
+			answer.style.marginTop = '20px';
+			answer.style.marginBottom = '20px';
+			
+			for (var j = 1; j <= 3; j++) {
+				var label = document.createElement('label');
+				var br = document.createElement('br');
+				var input = document.createElement('input');
+				input.type = 'checkbox';
+				input.classList = 'checkbox';
+				input.style.marginRight = '10px'
+				var text = document.createTextNode('Вариант ответа №' + j);
+				label.appendChild(input);
+				label.appendChild(text);
+				answer.appendChild(label);
+				answer.appendChild(br);
+			}
+
+			questionList.appendChild(question);
+			questionList.appendChild(answer);
+			question.appendChild(questionLabel);
+			questionLabel.appendChild(questionText);
+		}
 	},
 
 	createButton: function() {
@@ -81,5 +74,4 @@ var test = {
 test.createTitle();
 test.createForm();
 test.createQuestions();
-test.createAnswers();
 test.createButton();
